@@ -47,6 +47,9 @@
     <Compile Include="lab3\04.py" />
     <Compile Include="lab3\05.py" />
     <Compile Include="lab5\01.py" />
+    <Compile Include="lab5\02.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="lab1\" />
