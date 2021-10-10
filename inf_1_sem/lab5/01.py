@@ -3,35 +3,35 @@ import pygame as pg
 import numpy as np
 
 def trig(f,x,y,l,a,cl):
-	 #Вспомогательная функция, вызывается в функции рисования человечка
-	 #Рисует волос человечка
-	 #f - объект pygame.Surface
-	 #x, y - координаты одной из вершин волоса изображения
-	 #cl - цвет
-	 #bl - чёрный цвет
-	 #l - размеры волоса
-	 #a - угол поворота
+	#Auxiliary function, called in the man drawing function
+	#Draws a man's hair
+	#f is a pygame object.Surface
+	#x, y - coordinates of one of the vertices of the image hair
+	#cl - color
+	#bl - black color
+	#l - hair sizes
+	#a - angle of rotation
      pg.draw.polygon(f,cl,([x,y],[int(x+l*np.cos(a)),int(y-l*np.sin(a))],[int(x+l*np.cos(a+1.047)),int(y - np.sin(a+1.047)*l)]))
      pg.draw.polygon(f,bl,([x,y],[int(x+l*np.cos(a)),int(y-l*np.sin(a))],[int(x+l*np.cos(a+1.047)),int(y - np.sin(a+1.047)*l)]),1)
 	 
 def man(ck,cg,cm,cv,cn,cr,x,y,a,d):
-	#Основная функция
-	#Рисует  человечка
-	#ck - Цвет рук, кистей и лица
-	#cg - Цвет глаз
-	#cm - Цвет рубашки
-	#cv - Цвет волос
-	#cn - Цвет носа
-	#cr - Цвет рта
-	#x,y - координаты левого верхнего угла человечка
-	#a,d - размеры по вертикали и горизонтали
+	#Main function
+	# Draws a man
+	#ck - Color of hands and face
+	#cg - Eye color
+	#cm - Shirt color
+	#cm - Hair color
+	#cn - Nose color
+	#cr - Mouth color
+	#x,y - coordinates of the upper left corner of the man
+	#a,d - vertical and horizontal dimensions
 	
 	
-    #s - объект pygame.Surface
+    #s - object of pygame.Surface
     s = pg.Surface((927, 769), pg.SRCALPHA) 
 	
 	
-	#Тело
+	#Body
     pg.draw.circle(s,cm,(447,769),246,0)
 
     pg.draw.polygon(s,ck,([669,558],[700,573],[854,124],[823,124]),0)
@@ -49,7 +49,7 @@ def man(ck,cg,cm,cv,cn,cr,x,y,a,d):
     pg.draw.polygon(s,bl,([585,607],[642,531],[724,568],[720,668],[636,692]),1)
 
 	
-    #Голова
+    #Head
     pg.draw.ellipse(s,ck,(222,168,455,463),0)
     pg.draw.ellipse(s,cg,(327,316,99,87),0)
     pg.draw.ellipse(s,bl,(327,316,99,87),1)
@@ -66,7 +66,7 @@ def man(ck,cg,cm,cv,cn,cr,x,y,a,d):
     pg.draw.polygon(s,bl,([324,467],[568,467],[454,545]),1)
 
 	
-    #Волосы
+    #Hair
     L = 72
 
     trig(s,252,286,L,1.01,cv)
@@ -85,19 +85,19 @@ def man(ck,cg,cm,cv,cn,cr,x,y,a,d):
     screen.blit(s, (x,y))
 	
 def tablichka(x,y,a,d,sign):
-	#Основная функция
-	#Рисует табличку с напписью
-	#x,y - координаты левого верхнего угла человечка
-	#a,d - размеры по вертикали и горизонтали соответственно
-	#sign - надпись, строкового типа
+	#Main function
+	#Draws a sign with the inscription
+	#x,y - coordinates of the upper left corner of the man
+	#a,d - vertical and horizontal dimensions
+	#sign - sign, string type
 	
-	#s - объект pygame.Surface
+	#s - object of pygame.Surface
 	s = pg.Surface((927, 90), pg.SRCALPHA)
 	
 	myfont = pg.font.SysFont('arial', 60)
 	textsurface = myfont.render(sign, False, (0, 0, 0))
 	
-	pg.draw.rect(s,lg,(0,0,927,90),0)	# Рисует надпись (про питон что-то нецензурное)
+	pg.draw.rect(s,lg,(0,0,927,90),0)	# Draws an inscription (something obscene about python)
 	pg.draw.rect(s,bl,(0,0,927,90),1)
 	u = myfont.size(sign)
 	s.blit(textsurface,(int((927 - u[0])/2),0))
@@ -106,33 +106,32 @@ def tablichka(x,y,a,d,sign):
 	
 pg.init() 
  
-#НАЧАЛО РИСУНКА 
+#BEGIN OF DRAWING
  
 FPS = 30 
 screen = pg.display.set_mode((927, 769)) 
 
 
-#Библиотека цветов
-bl = (0,0,0,255)		#чёрный
-wh = (255,255,255,255)  #белый
-ye = (255,212,42,255)	#жёлтый
-gr =(0,128,0,255)		#зелёный
-ar =(255,102,0,255)		#оранжевый
-re = (255,42,42,255)	#красный
-pu = (212,42,255,255)	#фиолетовый
-br = (120,68,33,255)	#коричневый
-go = (128,179,255,255)	#голубой
-se = (190,200,183,255)	#серый
-sc = (233,198,175,255)	#бежевый
-lg = (127,255,42,255)	#токсично-зелёный
+#COLORS:
+bl = (0,0,0,255)		#black
+wh = (255,255,255,255)  #white
+ye = (255,212,42,255)	#yellow
+gr =(0,128,0,255)		#green
+ar =(255,102,0,255)		#orrange
+re = (255,42,42,255)	#red
+pu = (212,42,255,255)	#purple
+br = (120,68,33,255)	#brown
+go = (128,179,255,255)	#blue
+se = (190,200,183,255)	#gray
+sc = (233,198,175,255)	#color of the skin
+lg = (127,255,42,255)	#light green
 
 
 screen.fill(wh)
 man(sc,go,ar,pu,br,re,0,0,927,769)
 tablichka(0,0,927,90,'Python sucks!!!')
-tablichka(0,0,927,90,'Python sucks!!!')
 
-#КОНЕЦ РИСУНКА
+#END OF DRAWING
 
 pg.display.update() 
 clock = pg.time.Clock() 
